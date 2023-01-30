@@ -1,4 +1,4 @@
-# Webdev-Classwork
+# web-dev-spring2023-TannnerF
 
 I’m a second semester Junior Computer Science student. I have experience with programming languages such as java, JavaScript, html/css, SQL, and python. I have taken computer science I, II, III, as well as assembly, software engineering, object oriented programming, and digital logic. I’ve worked on programs, such as a website for the Humans Versus Zombies club to have a login system and keep all their data for the game in one place, and a min-max algorithm for an “escape the pig” game resembling cool-math games. I have collaborated on a dungeon game within unreal engine where I was responsible for saving the game state.
 
