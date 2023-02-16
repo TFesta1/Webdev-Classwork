@@ -15,10 +15,14 @@ const port = process.env.PORT || 3000 ; //80 for unsecure HTTP traffic, 443 for 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello New Paltz');
+  res.end('Hello New World');
 });
 
 // Stops node from closing down, listens to network traffic
 server.listen(port, () => 
     console.log(`Server running at http://${hostname}:${port}/`)
 );
+
+
+// to run, type: node server/index.js
+// npm run start ("start" is a script in package.json)
