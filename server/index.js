@@ -5,6 +5,13 @@ const hostname = '127.0.0.1';
 // If there's an env var set, use that. Otherwise, use 3000
 const port = process.env.PORT || 3000 ; //80 for unsecure HTTP traffic, 443 for secure HTTPS traffic
 
+
+// Using Vue3
+/*
+We're using the Composition API in Vue3
+
+*/
+
 // Start variables as "const", then change to "let" if needed
 
 
@@ -22,7 +29,6 @@ const server = http.createServer((req, res) => {
 server.listen(port, () => 
     console.log(`Server running at http://${hostname}:${port}/`)
 );
-
 
 // to run, type: node server/index.js
 // npm run start ("start" is a script in package.json)
