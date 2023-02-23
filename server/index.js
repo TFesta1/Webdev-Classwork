@@ -10,6 +10,10 @@ const port = process.env.PORT || 3000 ; //80 for unsecure HTTP traffic, 443 for 
 /*
 We're using the Composition API in Vue3
 
+npm init vue@latest
+
+npm run build (the dist folder can be used to build)
+npm run dev (run your server)
 */
 
 // Start variables as "const", then change to "let" if needed
