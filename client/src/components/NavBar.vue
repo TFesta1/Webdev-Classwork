@@ -1,8 +1,15 @@
 <script setup lang="ts">
+    import { ref } from 'vue';
     import { RouterLink } from 'vue-router';
+    import LoginBadge from './LoginBadge.vue';
     // Ctrl-Space after the word, import RouterLink Vue
 
-    const isMenuActive = false;
+    const isMenuActive = ref(false); //Click ref, the yellow bulb will appear, click it to import ref from vue
+
+    function toggleMenu() {
+        isMenuActive.value = !isMenuActive.value;
+        console.log({ isMenuActive });
+    }
 </script>
 
 <template>
@@ -15,7 +22,7 @@
 
                 </a>
         
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" :class="{ 'is-active': isMenuActive }" @click="isMenuActive = !isMenuActive" >
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" :class="{ 'is-active': isMenuActive }" @click="toggleMenu" >
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -59,6 +66,10 @@
                 </div>
         
                 <div class="navbar-end">
+
+                    <LoginBadge />
+                    
+
                     <div class="navbar-item">
                         <div class="buttons">
                             <!-- <i class="fa fa-download has-text-white" style="font-size:20px;"  aria-hidden="true">Download</i> -->
