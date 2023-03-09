@@ -15,9 +15,7 @@
     <RouterView />
   </div>
 
-  <FlyoutVue>
-    <Cart />
-  </FlyoutVue>
+  
 
   <!-- Displays depending on what the RouterLink is -->
   
