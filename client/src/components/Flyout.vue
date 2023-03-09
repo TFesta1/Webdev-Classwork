@@ -3,24 +3,26 @@
 </script>
 
 <template>
-    <div class="flyout">
-        Flyout
+    <div class="flyout active">
         <slot />
     </div>
 </template>
 
-<style scoped>
 
+<style scoped>
     .flyout {
         position: fixed;
         top: 52px;
-        right: -18rem; /* since the width is 20, we'll make it -18 here to slightly hide it */
+        right: -18rem;
         width: 20rem;
-        height: calc(100vh - 52px); /*vh = viewport height */
-        background-color: #fff;
-        border-left: 1px solid #ccc;
-        z-index: 100;
+        height: calc(100vh - 52px);
+        background-color: white;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
         transition: right 0.5s ease-in-out;
+        overflow-y: scroll;
+    }
+    .flyout.active {
+        right: 0;
     }
     .flyout:hover {
         right: 0;
