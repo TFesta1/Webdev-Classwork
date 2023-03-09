@@ -2,9 +2,19 @@
     import { ref } from 'vue';
     import { RouterLink } from 'vue-router';
     import LoginBadge from './LoginBadge.vue';
+    import FlyoutVue from './Flyout.vue';
+    import Cart from './Cart.vue';
+    import { quantity } from '@/model/cart';
     // Ctrl-Space after the word, import RouterLink Vue
 
     const isMenuActive = ref(false); //Click ref, the yellow bulb will appear, click it to import ref from vue
+    const isCartActive = ref(false)
+
+    const toggleCart = () => {
+        isCartActive.value = !isCartActive.value;
+    }
+
+
 
     function toggleMenu() {
         isMenuActive.value = !isMenuActive.value;
@@ -67,6 +77,14 @@
                 </div>
         
                 <div class="navbar-end">
+                    <div class="navbar-item">
+                        <button class="button is-primary">
+                            <span class="icon">
+                                <i class="fas fa-shopping-cart" @click="toggleCart"></i>
+                                <span class="tag is-danger quantity-tag">{{ quantity }}</span>
+                            </span>
+                        </button>
+                    </div>
 
                     <LoginBadge />
                     
@@ -91,8 +109,18 @@
             </div>
         </div>
     </nav>
+    <FlyoutVue :class="{'is-active': isCartActive}">
+        <Cart />
+    </FlyoutVue>
 </template>
 
 <style scoped>
+
+    .quantity-tag {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        border-radius: .5rem;
+    }
 
 </style>
