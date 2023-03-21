@@ -1,17 +1,28 @@
+
+
 ###
-POST https://dummyjson.com/products/add
+GET http://localhost:3000/products
+###
+GET http://localhost:3000/products/1
+
+
+###
+POST http://localhost:3000/products?search="New+Paltzs"
 Content-Type: application/json
 
 {
-  "title": "Product 1",
-  "price": 100
+  "title": "Brooklyn Bridge",
+  "description": "A beautiful bridge in New York City",
+  "price": 100,
+  "discountPercentage": 0.1,
+  "rating": 4.5,
+  "stock": 10,
+  "brand": "John Augustus Roebling",
+  "category": "bridge"
 }
 
 ###
-https://dummyjson.com/products?limit=10&skip=10&select=title,price
+DELETE http://localhost:3000/products/1
 
 ###
-GET http://localhost:3000
-
-###
-GET http://localhost:3000/products/1
+GET http://localhost:3000/products/search/bridge
