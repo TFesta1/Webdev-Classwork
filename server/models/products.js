@@ -10,8 +10,10 @@ function getProductById(id) {
 }
 
 function addProduct(product) {
-    product.id = data.products.length + 1;
-    data.products.push(product);
+    if (product !== undefined) {
+        product.id = data.products.length + 1;
+        data.products.push(product);
+    }
 }
 
 function updateProduct(product) {
@@ -21,7 +23,10 @@ function updateProduct(product) {
 
 function deleteProduct(id) {
     const index = data.products.findIndex(p => p.id === id);
+    const product = data.products[index];
     data.products.splice(index, 1);
+    return product
+
 }
 
 function searchProducts(searchTerm) {

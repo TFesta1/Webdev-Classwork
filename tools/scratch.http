@@ -3,7 +3,7 @@
 ###
 GET http://localhost:3000/products
 ###
-GET http://localhost:3000/products/1
+GET http://localhost:3000/products/101
 
 
 ###
@@ -19,6 +19,15 @@ Content-Type: application/json
   "stock": 10,
   "brand": "John Augustus Roebling",
   "category": "bridge"
+}
+
+###
+POST https://dummyjson.com/products/add
+Content-Type: application/json
+
+{
+  "title": "New Product",
+  "price": 100
 }
 
 ###

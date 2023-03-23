@@ -11,7 +11,7 @@ router
     // List specifics to general
     .get("/search/:q", (req, res) => {
         const term = req.params.q;
-        const list = model.searchProducts(q);
+        const list = model.searchProducts(term);
         res.send(list);
     })
 
@@ -41,7 +41,7 @@ router
     .delete("/:id", (req, res) => { 
         const id = +req.params.id;
         model.deleteProduct(id);
-        res.send(id);
+        res.send('' + id);
     })
 
 
