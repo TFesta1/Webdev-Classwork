@@ -2,8 +2,7 @@
 
 */
 
-import data from '../data/products.json';
-import { api } from './myFetch';
+import { api } from './session';
 
 export interface Product {
     id: number;
@@ -19,12 +18,12 @@ export interface Product {
     images: string[];
 }
 
-export function getProducts(): Product[] {
-
-    api('products').then(data => { 
-        console.log(data) 
-    });
-
-    return data.products;
+export function getProducts(): Promise<Product[]> {
+    return api('products')
 }
 
+
+// Path: client\src\model\products.ts
+// Compare this snippet from client\src\model\myFetch.ts:
+//
+// Default export

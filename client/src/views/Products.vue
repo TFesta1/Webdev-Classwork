@@ -1,9 +1,14 @@
 <script setup lang="ts">
-    import { getProducts, type Product } from '../model/products';
+    import { getProducts } from '../model/products';
+    // import { type Product } from '../model/products';
     import { ref } from 'vue';
     import { addToCart } from '../model/cart';
 
-    const products = ref(getProducts());
+    // <Product[]>
+    const products = ref<any>([]);
+    getProducts().then((data) => {
+        products.value = data;
+    });
     
 
 </script>
@@ -19,6 +24,7 @@
         </h2>
 
         <div class="product-list">
+            <progress v-if="!products.length" class="progress is-large is-info" max="100"></progress>
             <div class="product" v-for="product in products" :key="product.id">
                 <div class="product-image">
                     <img :src="product.thumbnail" alt="product.title" />
