@@ -24,7 +24,6 @@ Content-Type: application/json
 ###
 POST https://dummyjson.com/products/add
 Content-Type: application/json
-
 {
   "title": "New Product",
   "price": 100
@@ -35,5 +34,6 @@ DELETE http://localhost:3000/products/1
 
 ###
 GET http://localhost:3000/products/search/bridge
+
 ###
 GET http://localhost:3000/jokes

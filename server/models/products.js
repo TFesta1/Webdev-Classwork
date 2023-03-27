@@ -1,56 +1,41 @@
-const express = require('express');
-const model = require('../models/products');
-const router = express.Router();
+const data = require('../data/products.json');
 
-router
-    .get('/', (req, res) => {
-        const list = model.getProducts();
-        res.send(list)
-    })
+function getProducts() {
+  return data.products;
+}
 
-    .get('/search/:q', (req, res) => {
-        const term = req.params.q;
-        console.log({ term });
-        const list = model.searchProducts(term);
-        res.send(list);
-    })
+function getProductById(id) {
+    return data.products.find(product => product.id === id);
+}
 
-    .get('/:id', (req, res) => {
-        const id = +req.params.id;
-        const product = model.getProductById(id);
-        res.send(product);
-    })
+function addProduct(product) {
+    product.id = data.products.length + 1;
+    data.products.push(product);
+}
 
-    .post('/', (req, res) => {
-        const product = req.body;
+function updateProduct(product) {
+    const index = data.products.findIndex(p => p.id === product.id);
+    data.products[index] = product;
+}
 
-        console.log({ product });
-        console.log( req.query );
-        console.log( req.params );
-        console.log( req.headers );
+function deleteProduct(id) {
+    const index = data.products.findIndex(p => p.id === id);
+    data.products.splice(index, 1);
+}
 
-        model.addProduct(product);
-        res.send(product);
-    })
+function searchProducts(searchTerm) {
+    return data.products.filter(product => {
+        return  product.title.toLowerCase().includes(searchTerm.toLowerCase())  ||
+            product.description.toLowerCase().includes(searchTerm.toLowerCase())  ||
+            product.brand.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+}
 
-    .patch('/:id', (req, res) => {
-        const product = req.body;
-        model.updateProduct(product);
-        res.send(product);
-    })
-
-    .delete('/:id', (req, res) => {
-        const id = +req.params.id;
-        model.deleteProduct(id);
-        res.send({id});
-    })
-
-module.exports = router;
-
-/*  Ways to pass information to the server:
-    1. Query String Parameters
-    2. Route Parameters
-    3. Request Body
-    4. Request Headers
-    5. Cookies
-*/
+module.exports = {
+    getProducts,
+    getProductById,
+    addProduct,
+    updateProduct,
+    deleteProduct,
+    searchProducts
+};
