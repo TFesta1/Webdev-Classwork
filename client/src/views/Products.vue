@@ -7,7 +7,7 @@
     // <Product[]>
     const products = ref<any>([]);
     getProducts().then((data) => {
-        products.value = data;
+        products.value = data.data;
     });
     
 
