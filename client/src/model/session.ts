@@ -38,9 +38,9 @@ export function api(url: string){
 
         })
     })
-    // .finally(() => {
-    //     session.isLoading = false;
-    // })
+    .finally(() => {
+        session.isLoading = false;
+    })
 
 }
 
