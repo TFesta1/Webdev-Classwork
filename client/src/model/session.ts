@@ -9,7 +9,7 @@ const session = reactive({
     isLoading: false,
     messages: [] as {
         msg: string,
-        type: "success" | "error" | "warning" | "info"
+        type: "success" | "error" | "warning" | "info" | "danger"
     }[] 
 });
 
@@ -24,6 +24,18 @@ interface User {
 
 
 export function useSession() {
+    session.messages.push({
+        msg: "Welcome to the app!",
+        type: "success",
+    })
+    session.messages.push({
+        msg: "You're not logged in yet",
+        type: "warning",
+    })
+    session.messages.push({
+        msg: "Please log in",
+        type: "danger",
+    })
     return session;
 }
 
@@ -34,7 +46,7 @@ export function api(url: string){
             console.error(err);
             session.messages.push({
                 msg: err.message ?? JSON.stringify(err),
-                type: "error"
+                type: "danger"
 
         })
     })
@@ -59,6 +71,18 @@ export function useLogout() {
         router.push("/login")
     }
     
+}
+
+export function addMessage(msg: string, type: "success" | "error" | "warning" | "info" | "danger") {
+    console.log({msg, type})
+    session.messages.push({
+        msg,
+        type
+    })
+}
+
+export function deleteMessage(index: number) {
+    session.messages.splice(index, 1);
 }
 
 

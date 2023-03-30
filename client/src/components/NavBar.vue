@@ -5,6 +5,7 @@
     import FlyoutVue from './Flyout.vue';
     import Cart from './Cart.vue';
     import { quantity } from '@/model/cart';
+    import Notifications from './Notifications.vue';
     // Ctrl-Space after the word, import RouterLink Vue
 
     const isMenuActive = ref(false); //Click ref, the yellow bulb will appear, click it to import ref from vue
@@ -78,6 +79,7 @@
         
                 <div class="navbar-end">
                     <div class="navbar-item">
+                        <Notifications />
                         <button class="button is-primary">
                             <span class="icon">
                                 <i class="fas fa-shopping-cart" @click="toggleCart"></i>
