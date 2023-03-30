@@ -32,6 +32,18 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'))
 })
 
+// Error handling
+app
+    .use((err, req, res, next) => {
+        console.error(err);
+        const message =  {
+            status: err.code || 500,
+            error: err.message || 'Internal Server Error',
+            isSuccess: false
+        }
+        res.status(message.status).json(message);
+    })
+
 
 app.listen(port, () => 
   console.log(`Server running at http://${hostname}:${port}/`)
