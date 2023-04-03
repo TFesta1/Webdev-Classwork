@@ -27,6 +27,10 @@ export function getProduct(id: number): Promise<DataEnvelope<Product>> {
     return api(`products/${id}`)
 }
 
+export function createProduct(product: Product): Promise<DataEnvelope<Product>> {
+    return api('products', product)
+}
+
 
 // Path: client\src\model\products.ts
 // Compare this snippet from client\src\model\myFetch.ts:
