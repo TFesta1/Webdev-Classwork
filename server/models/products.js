@@ -1,8 +1,7 @@
 const data = require('../data/products.json');
 
 function getProducts() {
-    // throw new Error("Something went wrong");
-    return data.products;
+  return data.products;
 }
 
 function getProductById(id) {

@@ -13,12 +13,13 @@ app
     .use(express.static(path.join(__dirname, '../client/dist')))
 
     .use((req, res, next) => {
-        res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-        next();
+        res.header('Access-Control-Allow-Origin', '*')
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
+        next()
     })
-        
+
+
 // Actions
 app
     .get('/api/v1/', (req, res) => {
@@ -36,17 +37,19 @@ app.get('*', (req, res) => {
 app
     .use((err, req, res, next) => {
         console.error(err);
-        const message =  {
+        const msg = {
             status: err.code || 500,
             error: err.message || 'Internal Server Error',
             isSuccess: false
         }
-        res.status(message.status).json(message);
+        res.status(msg.status).json(msg)
     })
 
 
+console.log('1: About to start server')
+
 app.listen(port, () => 
-  console.log(`Server running at http://${hostname}:${port}/`)
+  console.log(`2: Server running at http://${hostname}:${port}/`)
 );
 
-console.log('Asked server to start')
+console.log('3: Asked server to start')
