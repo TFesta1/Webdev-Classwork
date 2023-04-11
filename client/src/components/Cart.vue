@@ -24,7 +24,7 @@
                     ${{ item.product.price }}
                     x 
                     <select v-model="item.quantity" class="quantity-dropdown">
-                        <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
+                        <option v-for="n in 10" :key="n">{{ n }}</option>
                     </select>
                 </p>            
             </div>
@@ -33,7 +33,9 @@
                     <i class="fas fa-trash"></i>
                 </span>
             </button>
+
         </div>
+        
     </div>
 </template>
 
