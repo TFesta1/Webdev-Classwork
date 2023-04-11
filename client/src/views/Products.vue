@@ -13,7 +13,7 @@ getProducts().then((data) => {
 <template>
     <div>
         <h1 class="title">
-            What would you like to buy?
+            TWhat would you like to buy?
         </h1>
 
 
