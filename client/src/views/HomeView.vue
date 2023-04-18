@@ -1,18 +1,15 @@
 <script setup lang="ts">
-<<<<<<< HEAD
 import Modal from '@/components/Modal.vue';
 import { ref } from 'vue';
 
     const isOpen = ref(false);
 
-=======
->>>>>>> parent of d51e616 (Full Catchup Push)
 </script>
 
 <template>
   <main>
     <h1 class="title">
-      This is our homepage
+        This is our home page
     </h1>
 
     <p>
