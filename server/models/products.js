@@ -8,44 +8,74 @@ async function collection() {
     return db.collection(COLLECTION_NAME);
 }
 
-async function getProducts() {
+async function getAll(page = 1, pageSize = 30) {
     const col = await collection();
-    const items = await col.find().toArray();
-    return items;
+    const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
+    const total = await col.countDocuments();
+    return { items, total };
 }
 
-function getProductById(id) {
-    return data.products.find(product => product.id === id);
+async function getById(id) {
+    const col = await collection();
+    const item = await col.findOne({ _id: new ObjectId(id) });
+    return item;
 }
 
-function addProduct(product) {
-    product.id = data.products.length + 1;
-    data.products.push(product);
+async function add(item) {
+    const col = await collection();
+
+    const result = await col.insertOne(item);
+
+    item._id = result.insertedId;
+    return item;
 }
 
-function updateProduct(product) {
-    const index = data.products.findIndex(p => p.id === product.id);
-    data.products[index] = product;
+async function update(item) {
+
+    console.log(item);
+    const col = await collection();
+    const result = await col.findOneAndUpdate(
+        { _id: new ObjectId(item.id) },
+        { $set: item },
+        { returnDocument: 'after' }
+    );
+
+    return result.value;
 }
 
-function deleteProduct(id) {
-    const index = data.products.findIndex(p => p.id === id);
-    data.products.splice(index, 1);
+async function deleteItem(id) {
+    const col = await collection();
+    const result = await col.deleteOne({ _id: new ObjectId(id) });
+    return result.deletedCount;
 }
 
-function searchProducts(searchTerm) {
-    return data.products.filter(product => {
-        return  product.title.toLowerCase().includes(searchTerm.toLowerCase())  ||
-            product.description.toLowerCase().includes(searchTerm.toLowerCase())  ||
-            product.brand.toLowerCase().includes(searchTerm.toLowerCase());
-    });
+async function search(searchTerm, page = 1, pageSize = 30) {
+    const col = await collection();
+    const query = {
+        $or: [
+            { title: { $regex: searchTerm, $options: 'i' } },
+            { description: { $regex: searchTerm, $options: 'i' } },
+            { brand: { $regex: searchTerm, $options: 'i' } }
+        ]
+    };
+
+    const items = await col.find(query).skip((page - 1) * pageSize).limit(pageSize).toArray();
+    const total = await col.countDocuments(query);
+    return { items, total };
+}
+
+async function seed() {
+    const col = await collection();
+    const result = await col.insertMany(data.products);
+    return result.insertedCount;
 }
 
 module.exports = {
-    getProducts,
-    getProductById,
-    addProduct,
-    updateProduct,
-    deleteProduct,
-    searchProducts
+    getAll,
+    getById,
+    add,
+    update,
+    deleteItem,
+    search,
+    seed,
 };
