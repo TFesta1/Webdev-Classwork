@@ -3,6 +3,8 @@ const express = require('express')
 const path = require('path');
 const jokes = require('./controllers/jokes');
 const products = require('./controllers/products')
+const users = require('./controllers/users')
+const { requireLogin } = require('./middleware/authorization')
 const app = express()
 
 const hostname = '127.0.0.1';
@@ -26,7 +28,8 @@ app
     .get('/api/v1/', (req, res) => {
         res.send('Hello World! From Express')
     })
-    .use('/api/v1/products', products)
+    .use('/api/v1/products', requireLogin(), products)
+    .use('/api/v1/users', users)
     .use('/api/v1/jokes', jokes)
 
 // Catch all
