@@ -19,6 +19,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     },
+    { path: '/storeLocations', name: 'store-locations', component: () => import('../views/StoreLocations.vue') },
     { path: '/admin/products', name: 'admin-products', component: () => import('../views/admin/ProductsList.vue'), beforeEnter: secureRoute },
     { path: '/admin/products/edit/:id?', name: 'admin-products-edit', component: () => import('../views/admin/ProductEdit.vue'), beforeEnter: secureRoute },
   ]
